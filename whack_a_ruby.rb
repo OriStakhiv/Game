@@ -1,3 +1,4 @@
+require 'gosu'
 class WhackARuby < Gosu::Window
 
   def initialize
@@ -18,3 +19,15 @@ class WhackARuby < Gosu::Window
     @playing = true
     @start_time = 0
   end
+
+  def draw
+    @image.draw(@x-@width / 2, @y - @height / 2, 1)
+  end
+
+  def update
+    @x += @velocity_x
+    @y += @velocity_y 
+  end
+window = WhackARuby.new
+window.show
+end
