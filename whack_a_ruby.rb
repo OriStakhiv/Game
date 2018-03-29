@@ -25,6 +25,16 @@ class WhackARuby < Gosu::Window
     @image.draw(@x-@width / 2, @y - @height / 2, 1)
     end
     @hammer_image.draw(mouse_x - 40, mouse_y - 10, 1)
+    if @hit == 0
+      c = Gosu::Color::NONE
+    elsif @hit == 1
+      c = Gosu::Color::GREEN
+    elsif @hit == -1
+      c = Gosu::Color::RED
+    end
+    draw_quad(0, 0, c, 800, 600, c, 0, 600, c)
+    @hit = 0  
+
   end
 
   def update
@@ -46,7 +56,7 @@ class WhackARuby < Gosu::Window
       end
     end
   end
-          
+
 window = WhackARuby.new
 window.show
 end
