@@ -24,6 +24,7 @@ class WhackARuby < Gosu::Window
     if @visible > 0
     @image.draw(@x-@width / 2, @y - @height / 2, 1)
     end
+    @hammer_image.draw(mouse_x - 40, mouse_y - 10, 1)
   end
 
   def update
@@ -34,8 +35,18 @@ class WhackARuby < Gosu::Window
     @visible -= 1
     @visible = 30
     if @visible < -10 && rand < 0.01
-    end  
+    end
   end
+  def button_down(id)
+    if (id == Gosu::MsLeft)
+      if Gosu.distance(mouse_x, mouse_y, @x, @y) < 50 && @visible >= 0
+        @hit = 1
+      else
+        @hit = -1
+      end
+    end
+  end
+          
 window = WhackARuby.new
 window.show
 end
